@@ -222,21 +222,76 @@ void set_pixel(int num, int red, int green, int blue) {
     strip.show();
 }
 
+//void trigger_success_message() {
+//  display.clearDisplay();
+//  display.display();
+//  display.drawBitmap(0,0,success_message,256,64,WHITE);
+//  display.display();
+//
+//
+//  delay(2000);
+//  
+//  display.clearDisplay();
+//  display.display();
+//
+//  success_message_triggered = true;
+//  set_screens_back_to_normal();
+//  }
+
 void trigger_success_message() {
   display.clearDisplay();
-  display.display();
-  display.drawBitmap(0,0,success_message,256,64,WHITE);
-  display.display();
-
+  display.drawBitmap(0,0,success1,256,64,WHITE);
+  display.display();  
+  display.clearDisplay();
+  display.drawBitmap(0,0,success2,256,64,WHITE);
+  display.display();  
+  display.clearDisplay();
+  display.drawBitmap(0,0,success3,256,64,WHITE);
+  display.display();  
+  display.clearDisplay();
+  display.drawBitmap(0,0,success4,256,64,WHITE);
+  display.display();  
+  display.clearDisplay();
+  display.drawBitmap(0,0,success5,256,64,WHITE);
+  display.display();  
+  display.clearDisplay();
+  display.drawBitmap(0,0,success6,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success7,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success8,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success9,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success10,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success7,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success8,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success9,256,64,WHITE);
+  display.display(); 
+  display.clearDisplay();
+  display.drawBitmap(0,0,success10,256,64,WHITE);
+  display.display(); 
+  
+  
 
   delay(2000);
-  
+
   display.clearDisplay();
   display.display();
-
   success_message_triggered = true;
   set_screens_back_to_normal();
   }
+
 
 void set_screens_back_to_normal(){
   display.setCursor(0, 0);
@@ -308,7 +363,14 @@ void button_action(int button){
 
   if(button == 5) {
     clear_pixels();
-    trigger_setup_message(connected_status);
+    display.clearDisplay();
+    display.display();
+    display.setCursor(0, 0);
+    display.drawBitmap(0,0,hello,256,64,WHITE);
+    display.display();
+    display.clearDisplay();
+
+    delay(2000);
   }
   
   if(button == 6) {
@@ -489,3 +551,4 @@ void show_icons(){
   lunch_status = false;
   book_status = false;
 }
+
