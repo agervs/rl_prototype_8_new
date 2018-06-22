@@ -53,6 +53,8 @@ bool lunch_is_green = false;
 bool book_is_green = false;
 bool success_message_triggered = false;
 
+int specialMessageCounter = 0;
+
 bool lunch_status = false; // false = red, true = green
 bool book_status = false; // false = red, true = green
 bool water_status = false; // false = red, true = green
@@ -324,14 +326,24 @@ void button_action(int button){
   }
       
   if(button == 7) {
-    if(water_is_visible == true){
-      if(lunch_status == false || water_status == false || book_status == false){
-        sing();
-      }
+    if (specialMessageCounter == 1){
+      set_screens_back_to_normal();
+      trigger_pixels();   
+    } 
+    if(specialMessageCounter == 0){
+      clear_pixels();
+      display.clearDisplay();
+      display.display();
+      display.setCursor(0, 0);
+      display.drawBitmap(0,0,specialMessagePermissionSlip,256,64,WHITE);
+      display.display();
+      display.clearDisplay();
+    }
+
+    if(specialMessageCounter == 0){
+      specialMessageCounter = 1;  
     } else {
-      if(lunch_status == false || book_status == false){
-        sing();
-      }
+      specialMessageCounter = 0;  
     }
   }
 
