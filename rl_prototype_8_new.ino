@@ -204,15 +204,9 @@ void loop(void)
     Serial.print ("Button "); Serial.print(buttnum);
     if (pressed) {
       button_action(buttnum);
-      if(water_is_visible == true){
         if(water_status == true && lunch_status == true && book_status == true){
            trigger_success_message();
         }
-      } else {
-        if(lunch_status == true && book_status == true){
-           trigger_success_message();
-        }
-      }
     }
   }
 }
@@ -295,22 +289,14 @@ void trigger_success_message() {
 
 void set_screens_back_to_normal(){
   display.setCursor(0, 0);
-  display.drawBitmap(0,0,lunchbook,256,64,WHITE);
+  display.drawBitmap(0,0,lunchbookwater,256,64,WHITE);
   display.display();
   display.clearDisplay();
-  
-  if(water_is_visible == true){
-    display.setCursor(0, 0);
-    display.drawBitmap(0,0,lunchbookwater,256,64,WHITE);
-    display.display();
-    display.clearDisplay();
-  }
-
 }
 
 void button_action(int button){
 
-  if(button == 1) {
+  if(button == 2) {
     if(lunch_status == false){
       lunch_status = true;
       set_pixel(lunchPixel, 0, greenPixelBrightness, 0); // green
@@ -320,7 +306,7 @@ void button_action(int button){
     }
   } 
 
-  if(button == 2) {
+  if(button == 1) {
     if(book_status == false){
       book_status = true;
       set_pixel(bookPixel, 0, greenPixelBrightness, 0); // green
@@ -331,7 +317,6 @@ void button_action(int button){
   } 
 
   if(button == 3) {
-    if(water_is_visible == true){
       if(water_status == false){
         water_status = true;
         set_pixel(waterPixel, 0, greenPixelBrightness, 0); // green
@@ -339,26 +324,9 @@ void button_action(int button){
         water_status = false;
         set_pixel(waterPixel, redPixelBrightness, 0, 0); // red
       }
-    }
   }
 
-  if(button == 4) {
-    if(water_is_visible == false){
-      water_is_visible = true;  
-      display.setCursor(0, 0);
-      display.drawBitmap(0,0,lunchbookwater,256,64,WHITE);
-      display.display();
-      display.clearDisplay();
-      set_pixel(waterPixel, redPixelBrightness, 0, 0);
-    } else {
-      water_is_visible = false;
-      display.setCursor(0, 0);
-      display.drawBitmap(0,0,lunchbook,256,64,WHITE);
-      display.display();
-      display.clearDisplay();
-      water_is_green = false;
-      set_pixel(waterPixel, 0, 0, 0);  
-    }
+  if(button == 4) { // switch icon set
   }
 
   if(button == 5) {
@@ -369,8 +337,6 @@ void button_action(int button){
     display.drawBitmap(0,0,hello,256,64,WHITE);
     display.display();
     display.clearDisplay();
-
-    delay(2000);
   }
   
   if(button == 6) {
@@ -518,12 +484,10 @@ void clear_pixels(){
 void trigger_pixels(){
   set_pixel(lunchPixel, redPixelBrightness, 0, 0);
   set_pixel(bookPixel, redPixelBrightness, 0, 0);
+  set_pixel(waterPixel, redPixelBrightness, 0, 0);
   water_status = false;
   lunch_status = false;
   book_status = false;
-  if(water_is_visible == true){
-     set_pixel(waterPixel, redPixelBrightness, 0, 0); 
-  }
 }
 
 void show_icons(){
@@ -531,22 +495,13 @@ void show_icons(){
   display.clearDisplay();
   display.display();
   display.setCursor(0, 0);
-  display.drawBitmap(0,0,lunchbook,256,64,WHITE);
+  display.drawBitmap(0,0,lunchbookwater,256,64,WHITE);
   display.display();
   display.clearDisplay();
 
-  if(water_is_visible == true){
-      icons_visible = true;
-      display.setCursor(0, 0);
-      display.drawBitmap(0,0,lunchbookwater,256,64,WHITE);
-      display.display();
-      display.clearDisplay();
-
-      set_pixel(lunchPixel, redPixelBrightness, 0, 0);
-  }
-
   set_pixel(bookPixel, redPixelBrightness, 0, 0);
   set_pixel(waterPixel, redPixelBrightness, 0, 0);
+  set_pixel(lunchPixel, redPixelBrightness, 0, 0);
   water_status = false;
   lunch_status = false;
   book_status = false;
