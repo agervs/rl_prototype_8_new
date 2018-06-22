@@ -44,6 +44,9 @@ int bookPixel = 1;
 int lunchPixel = 2;
 int waterPixel = 3;
 
+int redPixelBrightness = 100;
+int greenPixelBrightness = 150;
+
 bool water_is_visible = false;
 bool water_is_green = false;
 bool lunch_is_green = false;
@@ -253,20 +256,20 @@ void button_action(int button){
   if(button == 1) {
     if(lunch_status == false){
       lunch_status = true;
-      set_pixel(lunchPixel, 0, 200, 0); // green
+      set_pixel(lunchPixel, 0, greenPixelBrightness, 0); // green
     } else {
       lunch_status = false;
-      set_pixel(lunchPixel, 200, 0, 0); // red
+      set_pixel(lunchPixel, redPixelBrightness, 0, 0); // red
     }
   } 
 
   if(button == 2) {
     if(book_status == false){
       book_status = true;
-      set_pixel(bookPixel, 0, 200, 0); // green
+      set_pixel(bookPixel, 0, greenPixelBrightness, 0); // green
     } else {
       book_status = false;
-      set_pixel(bookPixel, 200, 0, 0); // red
+      set_pixel(bookPixel, redPixelBrightness, 0, 0); // red
     }
   } 
 
@@ -274,10 +277,10 @@ void button_action(int button){
     if(water_is_visible == true){
       if(water_status == false){
         water_status = true;
-        set_pixel(waterPixel, 0, 200, 0); // green
+        set_pixel(waterPixel, 0, greenPixelBrightness, 0); // green
       } else {
         water_status = false;
-        set_pixel(waterPixel, 200, 0, 0); // red
+        set_pixel(waterPixel, redPixelBrightness, 0, 0); // red
       }
     }
   }
@@ -289,7 +292,7 @@ void button_action(int button){
       display.drawBitmap(0,0,lunchbookwater,256,64,WHITE);
       display.display();
       display.clearDisplay();
-      set_pixel(waterPixel, 200, 0, 0);
+      set_pixel(waterPixel, redPixelBrightness, 0, 0);
     } else {
       water_is_visible = false;
       display.setCursor(0, 0);
@@ -440,13 +443,13 @@ void clear_pixels(){
 }
 
 void trigger_pixels(){
-  set_pixel(lunchPixel, 200, 0, 0);
-  set_pixel(bookPixel, 200, 0, 0);
+  set_pixel(lunchPixel, redPixelBrightness, 0, 0);
+  set_pixel(bookPixel, redPixelBrightness, 0, 0);
   water_status = false;
   lunch_status = false;
   book_status = false;
   if(water_is_visible == true){
-     set_pixel(waterPixel, 200, 0, 0); 
+     set_pixel(waterPixel, redPixelBrightness, 0, 0); 
   }
 }
 
@@ -466,11 +469,11 @@ void show_icons(){
       display.display();
       display.clearDisplay();
 
-      set_pixel(lunchPixel, 200, 0, 0);
+      set_pixel(lunchPixel, redPixelBrightness, 0, 0);
   }
 
-  set_pixel(bookPixel, 200, 0, 0);
-  set_pixel(waterPixel, 200, 0, 0);
+  set_pixel(bookPixel, redPixelBrightness, 0, 0);
+  set_pixel(waterPixel, redPixelBrightness, 0, 0);
   water_status = false;
   lunch_status = false;
   book_status = false;
