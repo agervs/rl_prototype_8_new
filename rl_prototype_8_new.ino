@@ -311,21 +311,16 @@ void button_action(int button){
   
   if(button == 6) {
     clear_pixels();
-    
     display.clearDisplay();
     display.display();
-//    display.setCursor(0, 0);
-//    display.drawBitmap(4,0,reminders_updated,120,64,WHITE);
-//    display.display();
-//    display.clearDisplay();
-//
-//    delay(2000);
+    display.setCursor(0, 0);
+    display.drawBitmap(0,0,remindersUpdated,256,64,WHITE);
+    display.display();
+    display.clearDisplay();
+
+    delay(2000);
     set_screens_back_to_normal();
     trigger_pixels();    
-  }
-
-  if(button == 8) {
-    show_icons();
   }
       
   if(button == 7) {
@@ -338,6 +333,10 @@ void button_action(int button){
         sing();
       }
     }
+  }
+
+  if(button == 8) {
+    show_icons();
   }
 }
 
